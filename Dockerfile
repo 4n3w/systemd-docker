@@ -1,6 +1,6 @@
-FROM busybox:latest
+FROM golang:onbuild
 
-ADD systemd-docker /
-ADD startup.sh /
-RUN mkdir -p /opt/bin
+RUN go build -o /opt/bin/systemd-docker
+ADD ./startup.sh /startup.sh
+
 CMD ["/startup.sh"]
